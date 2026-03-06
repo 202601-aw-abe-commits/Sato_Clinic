@@ -28,7 +28,7 @@
 
     body {
       margin: 0;
-      background: var(--bg);
+      background: linear-gradient(to bottom, #FFFFFF 0%, rgba(193, 255, 252, 0.15) 100%);
       color: var(--text);
       font-family: "Noto Sans JP", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
       font-size: 18px;
@@ -78,7 +78,12 @@
 
     /* Header */
     .site-header {
-      background: var(--ph);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      background: transparent;
       border-bottom: 0;
     }
 
@@ -239,7 +244,7 @@
       position: relative;
       display: flex;
       align-items: flex-end;
-      padding: 28px 0 36px;
+      padding: 120px 0 36px;
     }
 
     .hero-media {
@@ -672,10 +677,10 @@
           class="media-fallback">firstView.jpg</span></div>
 
       <div class="container hero-inner">
-        <div class="hero-content">
-          <div class="hero-copy">
-            <h1>佐藤医院</h1>
-          </div>
+          <div class="hero-content">
+            <div class="hero-copy">
+              <h1>地域に根ざした医療</h1>
+            </div>
 
           <div class="hero-cta">
             <a class="btn btn-primary" href="#contact">電話予約</a>

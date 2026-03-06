@@ -101,10 +101,14 @@
       align-items: center;
       gap: 12px;
       font-weight: 800;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 30;
     }
 
     .logo img {
-      width: 140px;
+      width: 220px;
       height: auto;
     }
 
@@ -120,9 +124,20 @@
       font-size: 16px;
     }
 
+    .global-nav {
+      margin-left: auto;
+    }
+
     .global-nav a {
       padding: 8px 10px;
       border-radius: 999px;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff;
+      text-shadow:
+        -1px 0 0 #000000,
+        1px 0 0 #000000,
+        0 -1px 0 #000000,
+        0 1px 0 #000000;
     }
 
     .global-nav a:hover {
@@ -254,6 +269,10 @@
       min-height: 520px;
     }
 
+    .hero-media img {
+      object-position: 28% 68%;
+    }
+
     .hero-content {
       position: relative;
       display: flex;
@@ -269,6 +288,8 @@
       line-height: 1.05;
       font-weight: 900;
       text-shadow: 0 4px 10px rgba(0, 0, 0, .12);
+      -webkit-text-stroke: 3px #FFFFFF;
+      text-stroke: 3px #FFFFFF;
     }
 
     @media (max-width: 960px) {

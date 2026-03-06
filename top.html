@@ -336,23 +336,42 @@
     }
 
     .schedule-notes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px 34px;
-      align-items: flex-start;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 8px 24px;
+      align-items: start;
       margin-top: 12px;
       font-weight: 700;
     }
 
     .schedule-notes p {
       margin: 0;
+      text-align: left;
+    }
+
+    .schedule-notes p:first-child {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .schedule-notes p:nth-child(2) {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .schedule-notes .small {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: start;
+      justify-self: center;
+      white-space: nowrap;
     }
 
     .schedule-actions {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 18px;
+      grid-column: 3;
+      grid-row: 1;
+      justify-self: end;
+      align-self: center;
     }
 
     /* News */
@@ -386,6 +405,8 @@
 
     .news-list li {
       margin: 14px 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, .3);
     }
 
     .news-actions {
@@ -447,6 +468,25 @@
 
     .service:nth-child(even) {
       background: rgba(0, 0, 0, .08);
+    }
+
+    .service-general {
+      background: rgba(255, 255, 255, .3);
+    }
+
+    .service.service-lifestyle {
+      background: #C1FFFC26;
+      border-color: #C1FFFC26;
+    }
+
+    .service.service-respiratory {
+      background: #E9FFB626;
+      border-color: #E9FFB626;
+    }
+
+    .service.service-digestive {
+      background: #E9FFB61A;
+      border-color: #E9FFB61A;
     }
 
     .service-inner {
@@ -737,10 +777,9 @@
           <p>受付時間：8時〜11時 / 13時〜18時</p>
           <p>休診日：木曜・土曜午後・日曜</p>
           <p class="small">※祝祭日も診察を行っておりますが、休診日もございますので、事前にご確認ください。</p>
-        </div>
-
-        <div class="schedule-actions">
-          <a class="btn btn-primary" href="#access">診察時間を見る</a>
+          <div class="schedule-actions">
+            <a class="btn btn-primary" href="#access">診察時間を見る</a>
+          </div>
         </div>
       </div>
     </section>
@@ -812,7 +851,7 @@
         <h2 class="section-title">診察内容</h2>
 
         <ul class="service-list">
-          <li class="service">
+          <li class="service service-general">
             <div class="service-inner">
               <div>
                 <h3>1.一般内科診療</h3>
@@ -824,7 +863,7 @@
             </div>
           </li>
 
-          <li class="service">
+          <li class="service service-lifestyle">
             <div class="service-inner">
               <div>
                 <h3>2.生活習慣病の診断・治療</h3>
@@ -836,10 +875,22 @@
             </div>
           </li>
 
-          <li class="service">
+          <li class="service service-respiratory">
             <div class="service-inner">
               <div>
-                <h3>3.消化器系の診察</h3>
+                <h3>3.呼吸器系の診察</h3>
+                <p>咳、息切れ、胸の痛みなど、呼吸器系の症状について診察を行っています。季節 性の喘息やアレルギー性鼻炎、慢性閉塞性肺疾患(COPD)などにも対応し、適 切な治療と予防をサポートします。</p>
+              </div>
+              <div class="media service-media"><img src="img/medical_6.jpg" alt=""
+                  onload="this.nextElementSibling.style.display='none';" onerror="this.remove();"><span
+                  class="media-fallback">medical_6.jpg</span></div>
+            </div>
+          </li>
+
+          <li class="service service-digestive">
+            <div class="service-inner">
+              <div>
+                <h3>4.消化器系の診察</h3>
                 <p>胃痛、胃もたれ、胸やけ、便秘、下痢などの消化器系の不調に対応しています。必要に応じて胃カメラや超音波検査などを実施し、胃腸の健康をサポートしま す。</p>
               </div>
               <div class="media service-media"><img src="img/medical_11.jpg" alt=""
@@ -848,17 +899,6 @@
             </div>
           </li>
 
-          <li class="service">
-            <div class="service-inner">
-              <div>
-                <h3>4.呼吸器系の診察</h3>
-                <p>咳、息切れ、胸の痛みなど、呼吸器系の症状について診察を行っています。季節 性の喘息やアレルギー性鼻炎、慢性閉塞性肺疾患(COPD)などにも対応し、適 切な治療と予防をサポートします。</p>
-              </div>
-              <div class="media service-media"><img src="img/medical_6.jpg" alt=""
-                  onload="this.nextElementSibling.style.display='none';" onerror="this.remove();"><span
-                  class="media-fallback">medical_6.jpg</span></div>
-            </div>
-          </li>
         </ul>
 
         <div class="services-actions">
@@ -1004,8 +1044,8 @@
         </nav>
 
         <div class="footer-cta" aria-label="予約ボタン">
-          <a class="btn btn-ghost" href="#contact">電話予約</a>
-          <a class="btn btn-ghost" href="#reserve">ご予約状況</a>
+          <a class="btn btn-primary" href="#contact">電話予約</a>
+          <a class="btn btn-primary" href="#reserve">ご予約状況</a>
         </div>
       </div>
 

@@ -460,12 +460,20 @@
     }
 
     .news-actions {
-      margin-top: 22px;
+      margin-top: 29px;
+    }
+
+    .news-actions .btn {
+      padding-left: 56px;
+      padding-right: 56px;
+      position: relative;
+      left: 380px;
     }
 
     /* Greeting */
     .greeting {
       padding-top: 28px;
+      padding-bottom: 22px;
     }
 
     .greeting-card {
@@ -494,7 +502,7 @@
     }
 
     .greeting-text p {
-      line-height: 1.45;
+      line-height: calc(1.3em + 2px);
     }
 
     .greeting-sign {
@@ -503,7 +511,16 @@
       align-self: flex-end;
     }
 
+    .greeting-sign-clinic {
+      display: inline-block;
+      transform: translateX(-20px);
+    }
+
     /* Services */
+    #services {
+      margin-top: -20px;
+    }
+
     .services-intro {
       margin: 0 0 22px;
       font-weight: 700;
@@ -600,6 +617,11 @@
       display: flex;
       justify-content: center;
       margin-top: 22px;
+    }
+
+    .services-actions .btn {
+      padding-left: 40px;
+      padding-right: 40px;
     }
 
     /* About */
@@ -912,7 +934,7 @@
               これからも、患者様の健康を第一に考え、地域の皆様に信頼される医療機関であり続けるため、スタッフ一同努力してまいります。どうぞよろしくお願いいたします。
             </p>
             <p class="greeting-sign">
-              佐藤医院<br />
+              <span class="greeting-sign-clinic">佐藤医院</span><br />
               院長 佐藤太郎
             </p>
           </div>

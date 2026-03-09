@@ -12,7 +12,7 @@
       --line: #b9b9b9;
       --ph: #d9d9d9;
       --text: #111;
-      --primary: #0088FF;
+      --primary: #005fb3;
       --radius: 24px;
       --shadow: 0 10px 24px rgba(0, 0, 0, .08);
     }
@@ -108,7 +108,7 @@
     }
 
     .logo img {
-      width: 220px;
+      width: 260px;
       height: auto;
     }
 
@@ -172,6 +172,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      font-family: "Noto Sans JP", sans-serif;
+      font-size: 32px;
       padding: 16px 28px;
       border-radius: 999px;
       font-weight: 800;
@@ -189,7 +191,7 @@
     .btn-primary {
       background: var(--primary);
       color: #fff;
-      box-shadow: 0 8px 16px rgba(0, 136, 255, .22);
+      box-shadow: 0 8px 16px rgba(0, 95, 179, .22);
     }
 
     .btn-primary:hover {
@@ -286,13 +288,18 @@
 
     .hero-copy h1 {
       margin: 0;
-      font-size: 72px;
+      font-family: "Noto Sans JP", sans-serif;
+      font-size: 96px;
       line-height: 1.05;
-      font-weight: 900;
-      text-shadow: 0 4px 10px rgba(0, 0, 0, .12);
+      font-weight: 700;
+      text-shadow: 0 8px 16px rgba(0, 0, 0, .24);
       -webkit-text-stroke: 3px #FFFFFF;
       text-stroke: 3px #FFFFFF;
-      transform: translate(-30px, 30px);
+      transform: translate(-30px, 40px);
+    }
+
+    .hero-copy h1 strong {
+      font-weight: 900;
     }
 
     @media (max-width: 960px) {
@@ -323,8 +330,22 @@
     }
 
     .hero-cta .btn {
-      transform: translateY(30px);
+      font-size: 40px;
+      line-height: 1;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      transform: translate(40px, 30px);
+      padding-left: 26px;
+      padding-right: 26px;
+      gap: 0.3em;
     }
+
+    .hero-cta .btn::before {
+      content: "☎";
+      font-size: 16px;
+      line-height: 1;
+    }
+
 
     /* Schedule */
     .schedule-grid {
@@ -386,13 +407,13 @@
     .schedule-notes p:nth-child(2) {
       grid-column: 1;
       grid-row: 2;
-      margin-top: -40px;
+      margin-top: -45px;
     }
 
     .schedule-notes .small {
       grid-column: 2;
-      grid-row: 2;
-      margin-top: -40px;
+      grid-row: 1;
+      margin-top: 20px;
       align-self: start;
       justify-self: center;
       white-space: nowrap;
@@ -403,6 +424,11 @@
       grid-row: 1;
       justify-self: end;
       align-self: center;
+    }
+
+    .schedule-actions .btn {
+      padding-left: 42px;
+      padding-right: 42px;
     }
 
     /* News */
@@ -476,6 +502,10 @@
       padding-bottom: 22px;
     }
 
+    .greeting .section-title {
+      transform: translate(25px, -40px);
+    }
+
     .greeting-card {
       display: grid;
       grid-template-columns: 520px 1fr;
@@ -519,6 +549,10 @@
     /* Services */
     #services {
       margin-top: -20px;
+    }
+
+    #services .section-title {
+      margin-top: -30px;
     }
 
     .services-intro {
@@ -620,8 +654,8 @@
     }
 
     .services-actions .btn {
-      padding-left: 40px;
-      padding-right: 40px;
+      padding-left: 60px;
+      padding-right: 60px;
     }
 
     /* About */
@@ -632,15 +666,34 @@
       max-width: 980px;
     }
 
+    .about-first-line {
+      display: inline-block;
+      transform: translateX(-70px);
+    }
+
     .about-media {
-      margin-top: 16px;
-      min-height: 420px;
+      margin-top: 66px;
+      width: calc(100% - 400px);
+      margin-inline: auto;
+      max-width: 100%;
+      min-height: 620px;
+    }
+
+    @media (max-width: 960px) {
+      .about-media {
+        width: 100%;
+      }
     }
 
     .about-actions {
       display: flex;
       justify-content: center;
       margin-top: 22px;
+    }
+
+    .about-actions .btn {
+      padding-left: 60px;
+      padding-right: 60px;
     }
 
     /* Staff */
@@ -735,7 +788,7 @@
 
     /* Footer */
     .site-footer {
-      background: var(--ph);
+      background: #005fb3;
       padding: 52px 0 24px;
       margin-top: 40px;
     }
@@ -817,7 +870,7 @@
       <div class="container hero-inner">
           <div class="hero-content">
             <div class="hero-copy">
-              <h1>地域に根ざした医療</h1>
+              <h1><strong>地域に根差した</strong>医療</h1>
             </div>
 
           <div class="hero-cta">
@@ -874,7 +927,7 @@
         <div class="schedule-notes">
           <p>受付時間：8時〜11時 / 13時〜18時</p>
           <p>休診日：木曜・土曜午後・日曜</p>
-          <p class="small">※祝祭日も診察を行っておりますが、休診日もございますので、事前にご確認ください。</p>
+          <p class="small">※祝祭日も診察を行っておりますが、<br />休診日もございますので、事前にご確認ください。</p>
           <div class="schedule-actions">
             <a class="btn btn-primary" href="#access">診察時間を見る</a>
           </div>
@@ -1010,7 +1063,7 @@
         <h2 class="section-title">当院について</h2>
 
         <p class="about-copy">
-          佐藤医院は、地域の皆様の健康を守り、より良い生活をサポートすることを使命としています。<br />
+          <span class="about-first-line">佐藤医院は、地域の皆様の健康を守り、より良い生活をサポートすることを使命としています。</span><br />
           創立以来、私たちは「患者様一人ひとりに寄り添った診療」を大切にし、地域密着型の医療を提供してまいりました。<br />
           今後も、皆様の健康維持と病気予防に貢献するため、より良い医療サービスを提供し続けることをお約束いたします。
         </p>

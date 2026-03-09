@@ -292,7 +292,7 @@
       text-shadow: 0 4px 10px rgba(0, 0, 0, .12);
       -webkit-text-stroke: 3px #FFFFFF;
       text-stroke: 3px #FFFFFF;
-      transform: translateY(30px);
+      transform: translate(-30px, 30px);
     }
 
     @media (max-width: 960px) {
@@ -320,6 +320,10 @@
       justify-content: flex-end;
       min-width: 220px;
       margin-top: 30px;
+    }
+
+    .hero-cta .btn {
+      transform: translateY(30px);
     }
 
     /* Schedule */
@@ -382,12 +386,13 @@
     .schedule-notes p:nth-child(2) {
       grid-column: 1;
       grid-row: 2;
-      margin-top: -6px;
+      margin-top: -40px;
     }
 
     .schedule-notes .small {
       grid-column: 2;
-      grid-row: 1;
+      grid-row: 2;
+      margin-top: -40px;
       align-self: start;
       justify-self: center;
       white-space: nowrap;
@@ -430,9 +435,28 @@
     }
 
     .news-list li {
-      margin: 14px 0;
+      margin: 24px 0;
       padding-bottom: 10px;
       border-bottom: 1px solid rgba(0, 0, 0, .3);
+    }
+
+    .news-list li:first-child {
+      margin-top: 0;
+    }
+
+    .news-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .news-image {
+      min-height: 325px;
+      align-self: start;
+    }
+
+    @media (max-width: 960px) {
+      .news-image {
+        min-height: 320px;
+      }
     }
 
     .news-actions {
@@ -826,10 +850,9 @@
     <!-- おしらせ -->
     <section id="news" aria-label="おしらせ">
       <div class="container">
+        <h2 class="section-title">おしらせ</h2>
         <div class="two-col">
           <div>
-            <h2 class="section-title">おしらせ</h2>
-
             <ol class="news-list">
               <li>インフルエンザ予防接種について</li>
               <li>年末年始の休診（12/29〜1/4）</li>
@@ -843,7 +866,7 @@
             </div>
           </div>
 
-          <div class="media " style="min-height:320px;"><img src="img/patient_10.jpg" alt=""
+          <div class="media news-image"><img src="img/patient_10.jpg" alt=""
               onload="this.nextElementSibling.style.display='none';" onerror="this.remove();"><span
               class="media-fallback">patient_10.jpg</span></div>
         </div>

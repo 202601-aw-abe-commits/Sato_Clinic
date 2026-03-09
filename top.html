@@ -487,8 +487,20 @@
     }
 
     .greeting-text {
+      display: flex;
+      flex-direction: column;
       font-weight: 700;
       margin-top: -23px;
+    }
+
+    .greeting-text p {
+      line-height: 1.45;
+    }
+
+    .greeting-sign {
+      margin-top: auto;
+      text-align: right;
+      align-self: flex-end;
     }
 
     /* Services */
@@ -899,7 +911,7 @@
             <p>
               これからも、患者様の健康を第一に考え、地域の皆様に信頼される医療機関であり続けるため、スタッフ一同努力してまいります。どうぞよろしくお願いいたします。
             </p>
-            <p>
+            <p class="greeting-sign">
               佐藤医院<br />
               院長 佐藤太郎
             </p>

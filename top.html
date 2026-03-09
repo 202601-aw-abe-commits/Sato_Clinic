@@ -493,7 +493,7 @@
       padding-left: 56px;
       padding-right: 56px;
       position: relative;
-      left: 380px;
+      left: 312px;
     }
 
     /* Greeting */
@@ -704,6 +704,27 @@
       align-items: start;
     }
 
+    #staff .section-title {
+      transform: translate(40px, -20px);
+      margin-bottom: 0;
+    }
+
+    #staff .container {
+      width: 100%;
+      max-width: none;
+    }
+
+    #staff .staff-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 0;
+      column-gap: 60px;
+      align-items: stretch;
+    }
+
+    #staff .staff-card {
+      height: 100%;
+    }
+
     @media (max-width: 960px) {
       .staff-grid {
         grid-template-columns: 1fr;
@@ -711,33 +732,53 @@
     }
 
     .staff-card {
-      border: 1px solid rgba(0, 0, 0, .08);
-      border-radius: 14px;
+      border: 0;
+      border-radius: 0;
       overflow: hidden;
-      background: #fff;
-      box-shadow: var(--shadow);
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .staff-card:nth-child(2) {
+      display: flex;
+      flex-direction: column;
     }
 
     .staff-photo {
-      min-height: 240px;
+      min-height: 490px;
       border-radius: 0;
     }
 
+    .staff-card:nth-child(4) .staff-photo img {
+      object-position: calc(50% + 80px) center;
+    }
+
     .staff-body {
-      padding: 14px 16px 18px;
+      padding: 0 0 50px 15px;
+    }
+
+    .staff-card:nth-child(2) .staff-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
     }
 
     .staff-name {
       text-align: center;
       font-size: 22px;
       font-weight: 900;
-      margin: 4px 0 10px;
+      margin: 4px 0 30px;
+    }
+
+    .staff-card:nth-child(2) .staff-name {
+      transform: translateY(5px);
     }
 
     .staff-body p {
       margin: 0;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .staff-body p+p {
@@ -752,6 +793,15 @@
       align-items: start;
     }
 
+    #access .section-title {
+      transform: translate(40px, -80px);
+    }
+
+    #access .container {
+      width: 100%;
+      max-width: none;
+    }
+
     @media (max-width: 960px) {
       .access-grid {
         grid-template-columns: 1fr;
@@ -760,30 +810,38 @@
     }
 
     .access-map {
-      min-height: 420px;
+      margin-top: -50px;
+      min-height: 620px;
+      border: 2px solid #000;
     }
 
     .info-block {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 24px;
+      justify-content: space-between;
       font-weight: 800;
+      transform: translate(120px, -50px);
+      min-height: 620px;
+      box-sizing: border-box;
     }
 
     .info-block h3 {
       margin: 0 0 10px;
-      font-size: 24px;
+      font-size: 32px;
       font-weight: 900;
     }
 
     .info-block p {
       margin: 0;
       font-weight: 800;
+      font-size: 24px;
     }
 
     .info-block .small {
       font-size: 16px;
       font-weight: 700;
+      line-height: 1.8;
     }
 
     /* Footer */
@@ -793,16 +851,25 @@
       margin-top: 40px;
     }
 
+    .site-footer .container {
+      width: 100%;
+      max-width: none;
+    }
+
     .footer-inner {
       display: flex;
       align-items: flex-start;
-      justify-content: space-between;
+      justify-content: flex-start;
       gap: 24px;
       flex-wrap: wrap;
     }
 
     .footer-logo img {
-      width: 160px;
+      width: 672px;
+    }
+
+    .footer-logo {
+      margin-top: -50px;
     }
 
     .footer-nav ul {
@@ -810,27 +877,50 @@
       padding: 0;
       list-style: none;
       display: flex;
-      gap: 18px 22px;
+      gap: 28px 40px;
       flex-wrap: wrap;
+      justify-content: center;
       font-weight: 800;
+      font-size: 32px;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .footer-nav a {
+      display: inline-block;
+      padding-bottom: 4px;
+      border-bottom: 2px solid #ffffff;
     }
 
     .footer-cta {
       background: #fff;
-      border-radius: 999px;
-      padding: 14px 18px;
+      border-radius: 20%;
+      padding: 34px 78px;
       display: flex;
-      gap: 12px;
+      flex-direction: column;
+      gap: 60px;
       align-items: center;
       border: 1px solid rgba(0, 0, 0, .10);
+      margin-left: auto;
+      transform: translate(-60px, -35px);
+    }
+
+    .footer-cta .btn {
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-left: 56px;
+      padding-right: 56px;
+      border-radius: 999px;
     }
 
     .footer-bottom {
       margin-top: 26px;
       padding-top: 18px;
-      border-top: 1px solid rgba(0, 0, 0, .16);
+      border-top: 0;
       font-weight: 800;
       text-align: center;
+      color: #ffffff;
+      transform: translateY(-10px);
     }
   </style>
 </head>
@@ -1085,14 +1175,14 @@
 
         <div class="staff-grid">
           <article class="staff-card">
-            <div class="media staff-photo"><img src="img/sato_taro.jpg" alt=""
+            <div class="media staff-photo"><img src="img/medical_8.jpg" alt=""
                 onload="this.nextElementSibling.style.display='none';" onerror="this.remove();"><span
-                class="media-fallback">sato_taro.jpg</span></div>
+                class="media-fallback">medical_8.jpg</span></div>
             <div class="staff-body">
               <h3 class="staff-name">院長：佐藤　太郎</h3>
 
-              <p>経歴： 光明大学医学部卒業後、<br />瑞穂中央総合病院で内科医として10年間勤務。その後、地域医療への貢献を目指し、佐藤医院を開院。</p>
-              <p>専門分野： 生活習慣病、呼吸器疾患、内科全般<br />コメント： 患者様にとって気軽に相談できる「かかりつけ医」を目指しています。どんな小さな不安でも、まずはご相談ください。</p>
+              <p>経歴： 光明大学医学部卒業後、<br />瑞穂中央総合病院で内科医として10年間勤務。<br />その後、地域医療への貢献を目指し、佐藤医院を開院。</p>
+              <p>専門分野： 生活習慣病、呼吸器疾患、内科全般<br />コメント： 患者様にとって気軽に相談できる「かかりつけ医」を目指しています。<br />どんな小さな不安でも、まずはご相談ください。</p>
             </div>
           </article>
 
@@ -1103,8 +1193,8 @@
             <div class="staff-body">
               <h3 class="staff-name">看護師長：鈴木　真里</h3>
 
-              <p>経歴： 白桜大学看護学部卒業後、<br />緑が丘大学病院で10年勤務。地域医療に携わりたい思いから、佐藤医院に入職。</p>
-              <p>得意分野： 親身な対応、注射・採血技術、健康管理指導<br />コメント： 安心して治療を受けていただけるよう、いつも笑顔でお待ちしています。些細なことでもお気軽にご相談ください。</p>
+              <p>経歴： 白桜大学看護学部卒業後、<br />緑が丘大学病院で10年勤務。<br />地域医療に携わりたい思いから、佐藤医院に入職。</p>
+              <p>得意分野： 親身な対応、注射・採血技術、健康管理指導<br />コメント： 安心して治療を受けていただけるよう、<br />いつも笑顔でお待ちしています。些細なことでもお気軽にご相談ください。</p>
             </div>
           </article>
 
@@ -1116,7 +1206,7 @@
               <h3 class="staff-name">臨床検査技師：高橋　由美</h3>
 
               <p>経歴： 東都臨床検査技術専門学校を卒業後、<br />武蔵中央医療センターにて15年間の臨床検査技師としての経験を積む。</p>
-              <p>得意分野： 血液検査、心電図検査、超音波検査<br />コメント： 検査は不安が伴うこともありますが、できるだけリラックスしていただけるよう、優しく丁寧な対応を心がけています。</p>
+              <p>得意分野： 血液検査、心電図検査、超音波検査<br />コメント： 検査は不安が伴うこともありますが、できるだけリラックスしていただけるよう、<br />優しく丁寧な対応を心がけています。</p>
             </div>
           </article>
 
@@ -1128,7 +1218,7 @@
               <h3 class="staff-name">医療事務：山本　花</h3>
 
               <p>経歴： 希望医療カレッジ卒業後、<br />さくら診療所にて受付業務を担当。現在は佐藤医院で患者様対応を担当。</p>
-              <p>得意分野： 受付業務、カルテ管理、医療費計算<br />コメント： 皆様に気持ちよくご利用いただけるよう、笑顔と真心を大切にしております。初めての方もどうぞ安心してお越しください。</p>
+              <p>得意分野： 受付業務、カルテ管理、医療費計算<br />コメント： 皆様に気持ちよくご利用いただけるよう、笑顔と真心を大切にしております。<br />初めての方もどうぞ安心してお越しください。</p>
             </div>
           </article>
         </div>
@@ -1182,22 +1272,22 @@
             onerror="this.style.display='none'; this.parentNode.insertAdjacentHTML('beforeend','<strong>logo.png</strong>');" />
         </div>
 
-        <nav class="footer-nav" aria-label="フッターナビゲーション">
-          <ul>
-            <li><a href="#">トップページ</a></li>
-            <li><a href="#news">おしらせ</a></li>
-            <li><a href="#services">診察内容</a></li>
-            <li><a href="#about">当院について</a></li>
-            <li><a href="#access">診察時間・所在地</a></li>
-            <li><a href="#faq">よくあるご質問</a></li>
-          </ul>
-        </nav>
-
         <div class="footer-cta" aria-label="予約ボタン">
           <a class="btn btn-primary" href="#contact">電話予約</a>
           <a class="btn btn-primary" href="#reserve">ご予約状況</a>
         </div>
       </div>
+
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <ul>
+          <li><a href="#">トップページ</a></li>
+          <li><a href="#news">おしらせ</a></li>
+          <li><a href="#services">診察内容</a></li>
+          <li><a href="#about">当院について</a></li>
+          <li><a href="#access">診察時間・所在地</a></li>
+          <li><a href="#faq">よくあるご質問</a></li>
+        </ul>
+      </nav>
 
       <div class="footer-bottom">© 2026 佐藤医院</div>
     </div>

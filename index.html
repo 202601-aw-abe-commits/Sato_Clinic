@@ -8,6 +8,7 @@
   <style>
     :root {
       --bg: #ffffff;
+      --bg-soft: #f2f9fd;
       --muted: #f2f2f2;
       --line: #b9b9b9;
       --ph: #d9d9d9;
@@ -342,7 +343,7 @@
 
     .hero-cta .btn::before {
       content: "☎";
-      font-size: 16px;
+      font-size: 32px;
       line-height: 1;
     }
 
@@ -358,7 +359,7 @@
       border: 1px solid var(--line);
       border-radius: 12px;
       overflow: hidden;
-      background: #fff;
+      background: var(--bg-soft);
     }
 
     .schedule-table {
@@ -574,12 +575,12 @@
     .service {
       border-radius: 14px;
       overflow: hidden;
-      background: #fff;
+      background: var(--bg-soft);
       border: 1px solid rgba(0, 0, 0, .06);
     }
 
     .service:nth-child(odd) {
-      background: #fff;
+      background: var(--bg-soft);
     }
 
     .service:nth-child(even) {
@@ -587,7 +588,11 @@
     }
 
     .service-general {
-      background: red;
+      background: #EAF6FB;
+    }
+
+    .service-general .service-inner {
+      background: #EAF6FB;
     }
 
     .service.service-lifestyle {
@@ -899,7 +904,7 @@
     }
 
     .footer-cta {
-      background: #fff;
+      background: var(--bg-soft);
       border-radius: 20%;
       padding: 34px 78px;
       display: flex;

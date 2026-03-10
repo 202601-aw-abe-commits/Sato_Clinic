@@ -139,10 +139,14 @@
         1px 0 0 #000000,
         0 -1px 0 #000000,
         0 1px 0 #000000;
+      transition: transform .18s ease, color .18s ease, background-color .18s ease;
     }
 
     .global-nav a:hover {
-      background: rgba(0, 0, 0, .06);
+      transform: translateY(-6px);
+      background: rgba(159, 216, 255, .18);
+      color: #9fd8ff !important;
+      -webkit-text-fill-color: #9fd8ff;
     }
 
     /* Common */
@@ -180,9 +184,13 @@
       font-weight: 800;
       border: 0;
       cursor: pointer;
-      transition: transform .08s ease, opacity .08s ease;
+      transition: transform .18s ease, opacity .18s ease, box-shadow .18s ease;
       user-select: none;
       white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
     }
 
     .btn:active {
@@ -197,6 +205,7 @@
 
     .btn-primary:hover {
       opacity: .92;
+      box-shadow: 0 14px 24px rgba(0, 95, 179, .28);
     }
 
     .btn-ghost {
@@ -206,6 +215,7 @@
 
     .btn-ghost:hover {
       background: rgba(0, 0, 0, .03);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, .08);
     }
 
     /* Placeholder (wireframe style) */
@@ -294,8 +304,8 @@
       line-height: 1.05;
       font-weight: 700;
       text-shadow: 0 8px 16px rgba(0, 0, 0, .24);
-      -webkit-text-stroke: 3px #FFFFFF;
-      text-stroke: 3px #FFFFFF;
+      -webkit-text-stroke: 2px #FFFFFF;
+      text-stroke: 2px #FFFFFF;
       transform: translate(-30px, 40px);
     }
 
@@ -341,12 +351,9 @@
       gap: 0.3em;
     }
 
-    .hero-cta .btn::before {
-      content: "☎";
-      font-size: 32px;
-      line-height: 1;
+    .hero-cta .btn:hover {
+      transform: translate(40px, 14px);
     }
-
 
     /* Schedule */
     .schedule-grid {
@@ -403,12 +410,14 @@
     .schedule-notes p:first-child {
       grid-column: 1;
       grid-row: 1;
+      transform: translateX(5px);
     }
 
     .schedule-notes p:nth-child(2) {
       grid-column: 1;
       grid-row: 2;
       margin-top: -45px;
+      transform: translateX(5px);
     }
 
     .schedule-notes .small {
@@ -428,8 +437,10 @@
     }
 
     .schedule-actions .btn {
-      padding-left: 42px;
-      padding-right: 42px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 77px;
+      padding-right: 77px;
     }
 
     /* News */
@@ -447,11 +458,16 @@
       }
     }
 
+    #news .section-title {
+      transform: translateY(-10px);
+    }
+
     .news-list {
       margin: 0;
       padding-left: 1.2em;
+      transform: translateX(-22px);
       font-weight: 800;
-      font-size: 22px;
+      font-size: 28px;
       line-height: 1.5;
     }
 
@@ -462,9 +478,31 @@
     }
 
     .news-list li {
+      position: relative;
+      width: fit-content;
+      max-width: 100%;
       margin: 24px 0;
       padding-bottom: 10px;
+      transition: transform .22s ease, color .18s ease;
+    }
+
+    .news-list li::after {
+      content: "";
+      position: absolute;
+      left: -80px;
+      right: 0;
+      bottom: 0;
       border-bottom: 1px solid rgba(0, 0, 0, .3);
+      transition: border-color .18s ease;
+    }
+
+    .news-list li:hover {
+      transform: translateY(-8px);
+      color: #005fb3;
+    }
+
+    .news-list li:hover::after {
+      border-color: rgba(0, 95, 179, .45);
     }
 
     .news-list li:first-child {
@@ -475,9 +513,32 @@
       margin-bottom: 0;
     }
 
+    .news-list li:nth-child(3) {
+      min-width: 12.7em;
+    }
+
+    .news-list li:nth-child(2) {
+      padding-right: 15px;
+    }
+
+    .news-list li:nth-child(5) {
+      padding-right: 15px;
+    }
+
+    .news-list li:nth-child(5)::after {
+      right: -10px;
+    }
+
+    .news-list-note-small {
+      font-size: 0.68em;
+    }
+
     .news-image {
-      min-height: 325px;
+      min-height: 365px;
       align-self: start;
+      width: calc(100% + 80px);
+      margin-left: -80px;
+      margin-top: 0;
     }
 
     @media (max-width: 960px) {
@@ -491,10 +552,12 @@
     }
 
     .news-actions .btn {
-      padding-left: 56px;
-      padding-right: 56px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 45px;
+      padding-right: 45px;
       position: relative;
-      left: 312px;
+      left: 180px;
     }
 
     /* Greeting */
@@ -504,7 +567,7 @@
     }
 
     .greeting .section-title {
-      transform: translate(25px, -40px);
+      transform: translate(0, -40px);
     }
 
     .greeting-card {
@@ -522,7 +585,7 @@
     }
 
     .greeting-photo {
-      min-height: 420px;
+      min-height: 450px;
     }
 
     .greeting-text {
@@ -577,6 +640,12 @@
       overflow: hidden;
       background: var(--bg-soft);
       border: 1px solid rgba(0, 0, 0, .06);
+      transition: transform .24s ease, box-shadow .24s ease;
+    }
+
+    .service:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 18px 30px rgba(0, 95, 179, .16);
     }
 
     .service:nth-child(odd) {
@@ -698,6 +767,7 @@
       display: flex;
       justify-content: center;
       margin-top: 22px;
+      transform: translateY(10px);
     }
 
     .about-actions .btn {
@@ -716,7 +786,7 @@
     }
 
     #staff .section-title {
-      transform: translate(40px, -20px);
+      transform: translate(50px, -20px);
       margin-bottom: 0;
     }
 
@@ -805,7 +875,7 @@
     }
 
     #access .section-title {
-      transform: translate(40px, -80px);
+      transform: translate(50px, -80px);
     }
 
     #access .container {
@@ -901,12 +971,19 @@
       display: inline-block;
       padding-bottom: 4px;
       border-bottom: 2px solid #ffffff;
+      transition: transform .18s ease, color .18s ease, border-color .18s ease;
+    }
+
+    .footer-nav a:hover {
+      transform: translateY(-4px);
+      color: #9fd8ff;
+      border-color: #9fd8ff;
     }
 
     .footer-cta {
       background: var(--bg-soft);
       border-radius: 20%;
-      padding: 34px 78px;
+      padding: 34px 58px;
       display: flex;
       flex-direction: column;
       gap: 60px;
@@ -922,6 +999,16 @@
       padding-left: 56px;
       padding-right: 56px;
       border-radius: 999px;
+    }
+
+    .footer-cta .btn:first-child {
+      padding-left: 126px;
+      padding-right: 126px;
+    }
+
+    .footer-cta .btn:nth-child(2) {
+      padding-left: 101px;
+      padding-right: 101px;
     }
 
     .footer-bottom {
@@ -1044,7 +1131,7 @@
           <div>
             <ol class="news-list">
               <li>インフルエンザ予防接種について</li>
-              <li>年末年始の休診（12/29〜1/4）</li>
+              <li>年末年始の休診<span class="news-list-note-small">（12/29〜1/4）</span></li>
               <li>健康診断のおしらせ</li>
               <li>新型コロナウイルス対策について</li>
               <li>オンライン診療の導入について</li>
@@ -1285,7 +1372,7 @@
 
         <div class="footer-cta" aria-label="予約ボタン">
           <a class="btn btn-primary" href="#contact">電話予約</a>
-          <a class="btn btn-primary" href="#reserve">ご予約状況</a>
+          <a class="btn btn-primary" href="#reserve">予約状況確認</a>
         </div>
       </div>
 

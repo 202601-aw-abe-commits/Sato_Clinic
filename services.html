@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>佐藤医院｜診察内容詳細</title>
+  <style>
+    :root {
+      --text: #111;
+      --primary: #005fb3;
+      --line: rgba(0, 0, 0, .12);
+      --soft: #eaf6fb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #ffffff 0%, #eef8fc 100%);
+      color: var(--text);
+      font-family: "Noto Sans JP", system-ui, sans-serif;
+      font-size: 18px;
+      line-height: 1.9;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .page {
+      padding: 56px 0 72px;
+    }
+
+    .page-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 50px;
+      line-height: 1.1;
+    }
+
+    .lead {
+      margin: 12px 0 0;
+      font-weight: 700;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 95, 179, .2);
+      background: #fff;
+      color: var(--primary);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 800;
+      transition: transform .18s ease, background-color .18s ease, color .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      background: #2d8fe3;
+      color: #fff;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, .94);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 34px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .05);
+      margin-bottom: 24px;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 16px;
+      font-size: 34px;
+      line-height: 1.2;
+    }
+
+    .hero-card p {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .detail-card {
+      background: rgba(255, 255, 255, .94);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .05);
+    }
+
+    .detail-card h3 {
+      margin: 0 0 16px;
+      font-size: 30px;
+      line-height: 1.2;
+      color: var(--primary);
+    }
+
+    .detail-card p {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      h1 {
+        font-size: 38px;
+      }
+
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="container">
+      <div class="page-head">
+        <div>
+          <h1>診察内容詳細</h1>
+          <p class="lead">健康診断・予防接種・禁煙外来についてご案内します。</p>
+        </div>
+        <a class="btn" href="index.html#services">トップへ戻る</a>
+      </div>
+
+      <section class="hero-card" aria-label="診察内容詳細">
+        <h2>地域の皆様の健康管理を支える診療</h2>
+        <p>日常の体調確認から予防、継続的な健康サポートまで、状況に応じた診察と検査を行っています。</p>
+      </section>
+
+      <section class="detail-grid" aria-label="診察内容">
+        <article class="detail-card">
+          <h3>5. 健康診断・各種検査</h3>
+          <p>定期健康診断をはじめ、血液検査、尿検査、心電図、超音波検査、レントゲン検査などを行い、病気の早期発見と予防に努めます。異常が見つかった場合は、経過観察や専門治療へとつなげてまいります。</p>
+        </article>
+
+        <article class="detail-card">
+          <h3>6. 予防接種</h3>
+          <p>インフルエンザや肺炎球菌などの各種予防接種を行っています。定期的な接種で感染予防と体調管理を支援いたします。予防接種は予約制となりますので、事前にお問い合わせください。</p>
+        </article>
+
+        <article class="detail-card">
+          <h3>7. 禁煙外来</h3>
+          <p>禁煙をご希望の方に、禁煙治療とサポートを行っています。必要に応じて、ニコチン依存症の治療薬を使用し、無理なく禁煙が継続できるようお手伝いいたします。</p>
+        </article>
+      </section>
+    </div>
+  </main>
+</body>
+
+</html>

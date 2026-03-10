@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>佐藤医院｜おしらせ編集</title>
+  <style>
+    :root {
+      --text: #111;
+      --primary: #005fb3;
+      --line: rgba(0, 0, 0, .12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #ffffff 0%, #eef8fc 100%);
+      color: var(--text);
+      font-family: "Noto Sans JP", system-ui, sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .page {
+      padding: 56px 0 72px;
+    }
+
+    .page-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 48px;
+      line-height: 1.1;
+    }
+
+    .lead {
+      margin: 10px 0 0;
+      font-weight: 700;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 26px;
+      border-radius: 999px;
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 800;
+      transition: transform .18s ease, opacity .18s ease, box-shadow .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 10px 18px rgba(0, 95, 179, .18);
+    }
+
+    .btn-ghost {
+      background: #fff;
+      color: var(--primary);
+      border: 1px solid rgba(0, 95, 179, .2);
+    }
+
+    .btn-danger {
+      background: #c62828;
+      color: #fff;
+      border: 1px solid #c62828;
+      box-shadow: 0 10px 18px rgba(198, 40, 40, .2);
+    }
+
+    .btn-danger:hover {
+      background: #df3d3d;
+      border-color: #df3d3d;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, .92);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .05);
+    }
+
+    .card h2 {
+      margin: 0 0 18px;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .news-list {
+      margin: 0;
+      padding-left: 1.4em;
+      font-weight: 800;
+      font-size: 24px;
+      line-height: 1.5;
+    }
+
+    .news-list li + li {
+      margin-top: 16px;
+    }
+
+    .news-list li {
+      border-bottom: 1px solid rgba(0, 0, 0, .2);
+      padding-bottom: 10px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid rgba(0, 0, 0, .14);
+      border-radius: 12px;
+      background: #fff;
+      font: inherit;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 88px;
+      padding: 12px 14px;
+      border: 1px solid rgba(0, 0, 0, .14);
+      border-radius: 12px;
+      background: #fff;
+      font: inherit;
+      resize: vertical;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .status {
+      min-height: 1.6em;
+      margin-top: 14px;
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .note {
+      margin: 0 0 18px;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(0, 0, 0, .72);
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .news-list {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="container">
+      <div class="page-head">
+        <div>
+          <h1>おしらせ編集ページ</h1>
+          <p class="lead">新しい順で最大8件まで編集できます。トップページには上位5件が表示されます。</p>
+        </div>
+        <a class="btn btn-ghost" href="news.html">一覧へ戻る</a>
+      </div>
+
+      <div class="layout">
+        <section class="card" aria-label="現在のおしらせ">
+          <h2>プレビュー</h2>
+          <ol class="news-list" id="news-list-items"></ol>
+        </section>
+
+        <section class="card" aria-label="おしらせ編集">
+          <h2>編集</h2>
+          <p class="note">上から新しい順です。空欄は保存時に非表示になります。</p>
+          <form id="news-editor-form">
+            <div class="form-grid">
+              <label>おしらせ1
+                <input type="text" name="newsTitle" maxlength="80" placeholder="タイトル" />
+                <textarea name="newsNote" maxlength="200" placeholder="備考"></textarea>
+              </label>
+              <label>おしらせ2
+                <input type="text" name="newsTitle" maxlength="80" placeholder="タイトル" />
+                <textarea name="newsNote" maxlength="200" placeholder="備考"></textarea>
+              </label>
+              <label>おしらせ3
+                <input type="text" name="newsTitle" maxlength="80" placeholder="タイトル" />
+                <textarea name="newsNote" maxlength="200" placeholder="備考"></textarea>
+              </label>
+              <label>おしらせ4
+                <input type="text" name="newsTitle" maxlength="80" placeholder="タイトル" />
+                <textarea name="newsNote" maxlength="200" placeholder="備考"></textarea>
+              </label>
+              <label>おしらせ5
+                <input type="text" name="newsTitle" maxlength="80" placeholder="タイトル" />
+                <textarea name="newsNote" maxlength="200" placeholder="備考"></textarea>
+              </label>
+              <label>おしらせ6
+                <input type="text" name="newsTitle" maxlength="80" placeholder="タイトル" />
+                <textarea name="newsNote" maxlength="200" placeholder="備考"></textarea>
+              </label>
+              <label>おしらせ7
+                <input type="text" name="newsTitle" maxlength="80" placeholder="タイトル" />
+                <textarea name="newsNote" maxlength="200" placeholder="備考"></textarea>
+              </label>
+              <label>おしらせ8
+                <input type="text" name="newsTitle" maxlength="80" placeholder="タイトル" />
+                <textarea name="newsNote" maxlength="200" placeholder="備考"></textarea>
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">保存</button>
+              <button class="btn btn-danger" type="button" id="news-reset-button">初期状態に戻す</button>
+            </div>
+            <div class="status" id="news-editor-status" aria-live="polite"></div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const STORAGE_KEY = "sato-clinic-news-items";
+      const AUTH_KEY = "sato-clinic-news-auth";
+      const defaultNewsItems = [
+        { title: "健康診断のおしらせ", note: "" },
+        { title: "新型コロナウイルス対策について", note: "" },
+        { title: "オンライン診療の導入について", note: "" },
+        { title: "発熱外来は事前にお電話でご予約ください", note: "" },
+        { title: "院長コラムを更新しました", note: "" },
+        { title: "4月から水曜午後の診療時間が変更になります", note: "" },
+        { title: "インフルエンザ予防接種について", note: "" },
+        { title: "年末年始の休診（12/29〜1/4）", note: "" }
+      ];
+
+      const list = document.getElementById("news-list-items");
+      const form = document.getElementById("news-editor-form");
+      const resetButton = document.getElementById("news-reset-button");
+      const status = document.getElementById("news-editor-status");
+      const titleInputs = Array.from(form.querySelectorAll('input[name="newsTitle"]'));
+      const noteInputs = Array.from(form.querySelectorAll('textarea[name="newsNote"]'));
+
+      if (sessionStorage.getItem(AUTH_KEY) !== "ok") {
+        window.location.href = "news.html";
+        return;
+      }
+
+      function normalize(items) {
+        return items
+          .map((item) => ({
+            title: String(item.title || "").trim(),
+            note: String(item.note || "").trim()
+          }))
+          .filter((item) => item.title)
+          .slice(0, 8);
+      }
+
+      function load() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) {
+            return defaultNewsItems;
+          }
+          const parsed = JSON.parse(raw);
+          if (!Array.isArray(parsed)) {
+            return defaultNewsItems;
+          }
+          const normalized = normalize(parsed.map((item) => {
+            if (typeof item === "string") {
+              return { title: item, note: "" };
+            }
+            return item;
+          }));
+          return normalized.length ? normalized : defaultNewsItems;
+        } catch {
+          return defaultNewsItems;
+        }
+      }
+
+      function save(items) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+      }
+
+      function render(items) {
+        list.innerHTML = "";
+        items.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item.title;
+          list.appendChild(li);
+        });
+      }
+
+      function fillForm(items) {
+        titleInputs.forEach((input, index) => {
+          input.value = items[index]?.title || "";
+        });
+        noteInputs.forEach((input, index) => {
+          input.value = items[index]?.note || "";
+        });
+      }
+
+      function setStatus(message) {
+        status.textContent = message;
+      }
+
+      const initialItems = load();
+      render(initialItems);
+      fillForm(initialItems);
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const items = normalize(titleInputs.map((input, index) => ({
+          title: input.value,
+          note: noteInputs[index]?.value || ""
+        })));
+        if (!items.length) {
+          setStatus("1件以上入力してください。");
+          return;
+        }
+        save(items);
+        render(items);
+        fillForm(items);
+        setStatus("おしらせを更新しました。");
+      });
+
+      resetButton.addEventListener("click", () => {
+        localStorage.removeItem(STORAGE_KEY);
+        render(defaultNewsItems);
+        fillForm(defaultNewsItems);
+        setStatus("初期状態に戻しました。");
+      });
+    })();
+  </script>
+</body>
+
+</html>

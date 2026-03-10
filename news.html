@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>佐藤医院｜おしらせ一覧</title>
+  <style>
+    :root {
+      --text: #111;
+      --primary: #005fb3;
+      --line: rgba(0, 0, 0, .12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #ffffff 0%, #eef8fc 100%);
+      color: var(--text);
+      font-family: "Noto Sans JP", system-ui, sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .page {
+      padding: 56px 0 72px;
+    }
+
+    .page-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 48px;
+      line-height: 1.1;
+    }
+
+    .lead {
+      margin: 10px 0 0;
+      font-weight: 700;
+      transform: translate(20px, 20px);
+    }
+
+    .head-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 26px;
+      border-radius: 999px;
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 800;
+      transition: transform .18s ease, opacity .18s ease, box-shadow .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 10px 18px rgba(0, 95, 179, .18);
+    }
+
+    .btn-ghost {
+      background: #fff;
+      color: var(--primary);
+      border: 1px solid rgba(0, 95, 179, .2);
+    }
+
+    .btn-ghost:hover {
+      color: #fff;
+      background: #2d8fe3;
+      border-color: #2d8fe3;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, .92);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .05);
+    }
+
+    .card h2 {
+      margin: 0 0 18px;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .card p {
+      margin: 0;
+    }
+
+    .news-list {
+      margin: 0;
+      padding-left: 1.4em;
+      font-weight: 800;
+      font-size: 24px;
+      line-height: 1.5;
+    }
+
+    .news-list li + li {
+      margin-top: 16px;
+    }
+
+    .news-list li {
+      border-bottom: 1px solid rgba(0, 0, 0, .2);
+      padding-bottom: 10px;
+      transition: transform .22s ease, color .18s ease, border-color .18s ease;
+      cursor: pointer;
+    }
+
+    .news-list li:hover {
+      transform: translateY(-10px);
+      color: var(--primary);
+      border-color: rgba(0, 95, 179, .45);
+    }
+
+    .news-list li.is-active {
+      color: var(--primary);
+      border-color: rgba(0, 95, 179, .45);
+    }
+
+    .news-detail {
+      margin-top: 24px;
+      background: rgba(234, 246, 251, .72);
+    }
+
+    .news-detail-title {
+      margin: 0 0 12px;
+      font-size: 26px;
+      line-height: 1.3;
+      color: var(--primary);
+    }
+
+    .news-detail-note {
+      min-height: 3.4em;
+      white-space: pre-wrap;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      .news-list {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="container">
+      <div class="page-head">
+        <div>
+          <h1>おしらせ一覧</h1>
+          <p class="lead">最新お知らせ</p>
+        </div>
+        <div class="head-actions">
+          <a class="btn btn-ghost" href="news-edit.html" id="news-edit-link">編集</a>
+          <a class="btn btn-ghost" href="index.html#news">トップへ戻る</a>
+        </div>
+      </div>
+
+      <section class="card" aria-label="おしらせ一覧">
+        <h2>現在のおしらせ</h2>
+        <ol class="news-list" id="news-list-items"></ol>
+      </section>
+
+      <section class="card news-detail" id="news-detail" aria-label="おしらせ詳細">
+        <h2>備考</h2>
+        <h3 class="news-detail-title" id="news-detail-title">タイトルを選択してください</h3>
+        <p class="news-detail-note" id="news-detail-note">おしらせタイトルをクリックすると、備考を表示します。</p>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const STORAGE_KEY = "sato-clinic-news-items";
+      const AUTH_KEY = "sato-clinic-news-auth";
+      const EDIT_PASSWORD = "1111";
+      const defaultNewsItems = [
+        { title: "健康診断のおしらせ", note: "" },
+        { title: "新型コロナウイルス対策について", note: "" },
+        { title: "オンライン診療の導入について", note: "" },
+        { title: "発熱外来は事前にお電話でご予約ください", note: "" },
+        { title: "院長コラムを更新しました", note: "" },
+        { title: "4月から水曜午後の診療時間が変更になります", note: "" },
+        { title: "インフルエンザ予防接種について", note: "" },
+        { title: "年末年始の休診（12/29〜1/4）", note: "" }
+      ];
+
+      const list = document.getElementById("news-list-items");
+      const editLink = document.getElementById("news-edit-link");
+      const detailSection = document.getElementById("news-detail");
+      const detailTitle = document.getElementById("news-detail-title");
+      const detailNote = document.getElementById("news-detail-note");
+
+      function load() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) {
+            return defaultNewsItems;
+          }
+          const parsed = JSON.parse(raw);
+          if (!Array.isArray(parsed)) {
+            return defaultNewsItems;
+          }
+          const normalized = parsed
+            .map((item) => {
+              if (typeof item === "string") {
+                return { title: item.trim(), note: "" };
+              }
+              if (!item || typeof item !== "object") {
+                return null;
+              }
+              return {
+                title: String(item.title || "").trim(),
+                note: String(item.note || "").trim()
+              };
+            })
+            .filter((item) => item && item.title)
+            .slice(0, 8);
+          return normalized.length ? normalized : defaultNewsItems;
+        } catch {
+          return defaultNewsItems;
+        }
+      }
+
+      function showDetail(item) {
+        if (!detailTitle || !detailNote) {
+          return;
+        }
+        detailTitle.textContent = item.title;
+        detailNote.textContent = item.note || "備考はありません。";
+      }
+
+      function activateItem(items, activeIndex) {
+        const children = Array.from(list.children);
+        children.forEach((node) => node.classList.remove("is-active"));
+        const safeIndex = Math.max(0, Math.min(activeIndex, items.length - 1));
+        const activeNode = children[safeIndex];
+        if (activeNode) {
+          activeNode.classList.add("is-active");
+        }
+        if (items[safeIndex]) {
+          showDetail(items[safeIndex]);
+        }
+      }
+
+      function render(items) {
+        list.innerHTML = "";
+        items.forEach((item, index) => {
+          const li = document.createElement("li");
+          li.textContent = item.title;
+          li.addEventListener("click", () => {
+            activateItem(items, index);
+            if (detailSection) {
+              detailSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          });
+          list.appendChild(li);
+        });
+        if (items.length) {
+          const params = new URLSearchParams(window.location.search);
+          const requestedIndex = Number.parseInt(params.get("item") || "1", 10) - 1;
+          activateItem(items, Number.isNaN(requestedIndex) ? 0 : requestedIndex);
+        }
+      }
+
+      if (editLink) {
+        editLink.addEventListener("click", (event) => {
+          event.preventDefault();
+          const password = window.prompt("編集ページのパスワードを入力してください。");
+          if (password === null) {
+            return;
+          }
+          if (password !== EDIT_PASSWORD) {
+            window.alert("パスワードが違います。");
+            return;
+          }
+          sessionStorage.setItem(AUTH_KEY, "ok");
+          window.location.href = editLink.href;
+        });
+      }
+
+      render(load());
+    })();
+  </script>
+</body>
+
+</html>
